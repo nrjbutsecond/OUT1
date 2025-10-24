@@ -247,10 +247,10 @@ export function getTranslation(key: string, language: string = "en"): string {
   
   // Support nested keys like "nav.services"
   if (key.includes('.')) {
-    return (translation as any)[key] || key
+    return (translation as Record<string, string>)[key] || key
   }
-  
-  return (translation as any)[key] || key
+
+  return (translation as Record<string, string>)[key] || key
 }
 
 export function useTranslation() {

@@ -68,13 +68,13 @@ export default async function AdminMentorsPage() {
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-green-600">
-                {mentors.filter(m => m.emailVerified).length}
+                {mentors.filter((m: { emailVerified: unknown }) => m.emailVerified).length}
               </div>
               <div className="text-sm text-muted-foreground">Đã xác thực</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-blue-600">
-                {mentors.filter(m => m.organization).length}
+                {mentors.filter((m: { organization: unknown }) => m.organization).length}
               </div>
               <div className="text-sm text-muted-foreground">Có tổ chức</div>
             </div>
@@ -111,12 +111,12 @@ export default async function AdminMentorsPage() {
               <SelectContent>
                 <SelectItem value="all">Tất cả tổ chức</SelectItem>
                 {mentors
-                  .filter(m => m.organization)
-                  .map(m => m.organization!)
-                  .filter((org, index, self) => 
-                    index === self.findIndex(o => o.id === org.id)
+                  .filter((m: { organization: unknown }) => m.organization)
+                  .map((m: { organization: { id: string; name: string } }) => m.organization!)
+                  .filter((org: { id: string; name: string }, index: number, self: { id: string; name: string }[]) =>
+                    index === self.findIndex((o: { id: string; name: string }) => o.id === org.id)
                   )
-                  .map(org => (
+                  .map((org: { id: string; name: string }) => (
                     <SelectItem key={org.id} value={org.id}>
                       {org.name}
                     </SelectItem>
@@ -139,7 +139,7 @@ export default async function AdminMentorsPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {mentors.map((mentor) => (
+              {mentors.map((mentor: typeof mentors[number]) => (
                 <TableRow key={mentor.id}>
                   <TableCell className="font-medium">{mentor.name}</TableCell>
                   <TableCell>{mentor.email}</TableCell>

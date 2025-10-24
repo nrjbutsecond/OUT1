@@ -75,19 +75,19 @@ export default async function AdminUsersPage() {
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-blue-600">
-                {users.filter(u => u.role === "USER").length}
+                {users.filter((u: { role: string }) => u.role === "USER").length}
               </div>
               <div className="text-sm text-muted-foreground">Người dùng</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-green-600">
-                {users.filter(u => u.role === "PARTNER").length}
+                {users.filter((u: { role: string }) => u.role === "PARTNER").length}
               </div>
               <div className="text-sm text-muted-foreground">Đối tác</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-purple-600">
-                {users.filter(u => u.role === "MENTOR").length}
+                {users.filter((u: { role: string }) => u.role === "MENTOR").length}
               </div>
               <div className="text-sm text-muted-foreground">Mentor</div>
             </div>
@@ -140,7 +140,7 @@ export default async function AdminUsersPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {users.map((user) => (
+              {users.map((user: typeof users[number]) => (
                 <TableRow key={user.id}>
                   <TableCell className="font-medium">{user.name}</TableCell>
                   <TableCell>{user.email}</TableCell>

@@ -187,7 +187,7 @@ export default function SettingsPage() {
             <CardHeader>
               <CardTitle>Save Changes</CardTitle>
               <CardDescription>
-                Don't forget to save your changes
+                Don&apos;t forget to save your changes
               </CardDescription>
             </CardHeader>
             <CardContent>

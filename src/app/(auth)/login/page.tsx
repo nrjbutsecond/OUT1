@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Eye, EyeOff } from "lucide-react"
+import { toast } from "sonner"
 
 function LoginForm() {
   const [email, setEmail] = useState("")
@@ -146,7 +147,7 @@ function LoginForm() {
           </div>
 
                 <div className="text-center text-sm mt-4 text-gray-600">
-                  Don't have an account?{" "}
+                  Don&apos;t have an account?{" "}
                   <Link href="/register" className="text-red-600 hover:text-red-700 hover:underline font-medium">
                     Sign up now
                   </Link>

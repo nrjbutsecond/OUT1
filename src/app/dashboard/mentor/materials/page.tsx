@@ -88,7 +88,7 @@ export default async function MentorMaterialsPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {workspaces.map((workspace) => (
+              {workspaces.map((workspace: typeof workspaces[number]) => (
                 <div key={workspace.id} className="border rounded-lg p-4">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
@@ -153,7 +153,7 @@ export default async function MentorMaterialsPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {files.map((file) => (
+              {files.map((file: typeof files[number]) => (
                 <div key={file.id} className="border rounded-lg p-4">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">

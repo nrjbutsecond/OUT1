@@ -74,19 +74,19 @@ export default async function AdminEventsPage() {
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-green-600">
-                {events.filter(e => e.approved).length}
+                {events.filter((e: { approved: boolean }) => e.approved).length}
               </div>
               <div className="text-sm text-muted-foreground">Đã duyệt</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-yellow-600">
-                {events.filter(e => !e.approved).length}
+                {events.filter((e: { approved: boolean }) => !e.approved).length}
               </div>
               <div className="text-sm text-muted-foreground">Chờ duyệt</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-blue-600">
-                {events.reduce((sum, e) => sum + e.tickets.length, 0)}
+                {events.reduce((sum: number, e: { tickets: unknown[] }) => sum + e.tickets.length, 0)}
               </div>
               <div className="text-sm text-muted-foreground">Tổng vé bán</div>
             </div>
@@ -133,7 +133,7 @@ export default async function AdminEventsPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {events.map((event) => (
+              {events.map((event: typeof events[number]) => (
                 <TableRow key={event.id}>
                   <TableCell className="font-medium">{event.name}</TableCell>
                   <TableCell>
