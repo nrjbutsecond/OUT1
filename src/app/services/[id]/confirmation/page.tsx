@@ -88,7 +88,7 @@ function ServiceConfirmationContent() {
           {/* Next Steps */}
           <Card className="bg-gray-800/90 backdrop-blur-sm border border-gray-700/50 shadow-xl mb-8">
             <CardHeader>
-              <CardTitle className="text-white">What's Next?</CardTitle>
+              <CardTitle className="text-white">What&apos;s Next?</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-left">
               <div className="flex items-start space-x-3">

@@ -870,7 +870,7 @@ async function main() {
 
 
   // Create workspace pages
-  const workspacePages = []
+  const workspacePages: { id: string }[] = []
   for (let i = 0; i < 20; i++) {
     const page = await prisma.workspacePage.create({
       data: {

@@ -85,19 +85,19 @@ export default async function AdminOrganizationsPage() {
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-green-600">
-                {organizations.filter(o => o.approved).length}
+                {organizations.filter((o: { approved: boolean }) => o.approved).length}
               </div>
               <div className="text-sm text-muted-foreground">Đã duyệt</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-yellow-600">
-                {organizations.filter(o => !o.approved).length}
+                {organizations.filter((o: { approved: boolean }) => !o.approved).length}
               </div>
               <div className="text-sm text-muted-foreground">Chờ duyệt</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-purple-600">
-                {organizations.filter(o => o.type === "VIP").length}
+                {organizations.filter((o: { type: string }) => o.type === "VIP").length}
               </div>
               <div className="text-sm text-muted-foreground">VIP</div>
             </div>
@@ -161,7 +161,7 @@ export default async function AdminOrganizationsPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {organizations.map((org) => (
+              {organizations.map((org: typeof organizations[number]) => (
                 <TableRow key={org.id}>
                   <TableCell className="font-medium">{org.name}</TableCell>
                   <TableCell>{org.creator?.email || "N/A"}</TableCell>

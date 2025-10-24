@@ -126,7 +126,7 @@ function ServiceSuccessContent() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-gray-900">
                 <Calendar className="h-5 w-5 text-red-500" />
-                What's Next?
+                What&apos;s Next?
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-gray-700">
@@ -135,7 +135,7 @@ function ServiceSuccessContent() {
                   <div className="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
                   <div>
                     <h4 className="font-medium text-gray-900">Email Confirmation</h4>
-                    <p className="text-sm text-gray-600">You'll receive a confirmation email with service details and next steps.</p>
+                    <p className="text-sm text-gray-600">You&apos;ll receive a confirmation email with service details and next steps.</p>
                   </div>
                 </div>
                 

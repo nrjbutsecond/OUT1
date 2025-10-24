@@ -47,7 +47,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     const cart = localStorage.getItem('cart')
     if (cart) {
       const cartItems = JSON.parse(cart)
-      const totalItems = cartItems.reduce((sum: number, item: any) => sum + item.quantity, 0)
+      const totalItems = cartItems.reduce((sum: number, item: { quantity: number }) => sum + item.quantity, 0)
       setCartCount(totalItems)
     } else {
       setCartCount(0)

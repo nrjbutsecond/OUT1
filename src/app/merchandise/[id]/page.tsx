@@ -72,7 +72,7 @@ export default function ProductPage() {
     const cart = existingCart ? JSON.parse(existingCart) : []
 
     // Check if product already exists in cart
-    const existingItem = cart.find((item: any) => item.productId === product.id)
+    const existingItem = cart.find((item: { productId: string; quantity: number }) => item.productId === product.id)
     
     if (existingItem) {
       // Update quantity

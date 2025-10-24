@@ -96,7 +96,7 @@ export default function HomePage() {
                           <Target className="h-12 w-12 text-red-500 mb-4" />
                           <CardTitle className="high-contrast-text">Marketing & Outreach</CardTitle>
                           <CardDescription className="high-contrast-muted">
-                            Tools and strategies to expand your event's reach and attract more audience
+                            Tools and strategies to expand your event&apos;s reach and attract more audience
                           </CardDescription>
                         </CardHeader>
                       </Card>

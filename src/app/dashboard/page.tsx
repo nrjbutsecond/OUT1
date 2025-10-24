@@ -16,7 +16,7 @@ export default async function DashboardPage() {
 
   // Get user-specific data based on role
   let stats = []
-  let recentActivity = []
+  const recentActivity = []
 
   switch (session.user.role) {
     case "ADMIN":

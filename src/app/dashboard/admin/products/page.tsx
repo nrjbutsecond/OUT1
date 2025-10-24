@@ -66,19 +66,19 @@ export default async function AdminProductsPage() {
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-green-600">
-                {products.filter(p => p.approved).length}
+                {products.filter((p: { approved: boolean }) => p.approved).length}
               </div>
               <div className="text-sm text-muted-foreground">Đã duyệt</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-yellow-600">
-                {products.filter(p => !p.approved).length}
+                {products.filter((p: { approved: boolean }) => !p.approved).length}
               </div>
               <div className="text-sm text-muted-foreground">Chờ duyệt</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-red-600">
-                {products.filter(p => p.stock === 0).length}
+                {products.filter((p: { stock: number }) => p.stock === 0).length}
               </div>
               <div className="text-sm text-muted-foreground">Hết hàng</div>
             </div>
@@ -125,7 +125,7 @@ export default async function AdminProductsPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {products.map((product) => (
+              {products.map((product: typeof products[number]) => (
                 <TableRow key={product.id}>
                   <TableCell className="font-medium">{product.name}</TableCell>
                   <TableCell>

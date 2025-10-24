@@ -72,7 +72,7 @@ export default async function AdminDashboardPage() {
   const completedOrders = await prisma.order.findMany({
     where: { status: "DELIVERED" },
   })
-  const totalRevenue = completedOrders.reduce((sum, order) => sum + order.total, 0)
+  const totalRevenue = completedOrders.reduce((sum: number, order: { total: number }) => sum + order.total, 0)
 
   const stats = [
     {
@@ -156,7 +156,7 @@ export default async function AdminDashboardPage() {
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
         <p className="text-gray-600 mt-2">
-          Welcome back, {session.user.name}! Here's what's happening with your platform.
+          Welcome back, {session.user.name}! Here&apos;s what&apos;s happening with your platform.
         </p>
       </div>
 
@@ -222,7 +222,7 @@ export default async function AdminDashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {recentUsers.map((user) => (
+              {recentUsers.map((user: typeof recentUsers[number]) => (
                 <div key={user.id} className="flex items-center justify-between">
                   <div>
                     <p className="font-medium text-gray-900">{user.name}</p>
@@ -250,7 +250,7 @@ export default async function AdminDashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {recentOrders.map((order) => (
+              {recentOrders.map((order: typeof recentOrders[number]) => (
                 <div key={order.id} className="flex items-center justify-between">
                   <div>
                     <p className="font-medium text-gray-900">{order.user.name}</p>

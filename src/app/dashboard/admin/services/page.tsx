@@ -63,19 +63,19 @@ export default async function AdminServicesPage() {
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-green-600">
-                {services.filter(s => s.approved).length}
+                {services.filter((s: { approved: boolean }) => s.approved).length}
               </div>
               <div className="text-sm text-muted-foreground">Đã duyệt</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-yellow-600">
-                {services.filter(s => !s.approved).length}
+                {services.filter((s: { approved: boolean }) => !s.approved).length}
               </div>
               <div className="text-sm text-muted-foreground">Chờ duyệt</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-blue-600">
-                {services.reduce((sum, s) => sum + s.purchases.length, 0)}
+                {services.reduce((sum: number, s: { purchases: unknown[] }) => sum + s.purchases.length, 0)}
               </div>
               <div className="text-sm text-muted-foreground">Tổng mua</div>
             </div>
@@ -121,7 +121,7 @@ export default async function AdminServicesPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {services.map((service) => (
+              {services.map((service: typeof services[number]) => (
                 <TableRow key={service.id}>
                   <TableCell className="font-medium">{service.name}</TableCell>
                   <TableCell>

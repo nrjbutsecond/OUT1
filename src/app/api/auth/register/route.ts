@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server"
 import bcrypt from "bcryptjs"
 import { prisma } from "@/lib/prisma"
 import { sendVerificationEmail } from "@/lib/email"
-import { CurrentRole } from "@prisma/client"
 
 export async function POST(req: NextRequest) {
   try {
@@ -47,7 +46,7 @@ export async function POST(req: NextRequest) {
         password: hashedPassword,
         name,
         phone,
-        currentRole: currentRole as CurrentRole,
+        currentRole: currentRole as "STUDENT" | "UNIVERSITY_STUDENT" | "TEACHER" | "EMPLOYEE",
         organization,
         roleAtOrg,
         emailVerified: null, // Will be set after email verification

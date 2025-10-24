@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ShoppingBag, Package, Calendar, CreditCard, Download } from "lucide-react"
+import Link from "next/link"
 
 export default async function UserOrdersPage() {
   const session = await getServerSession(authOptions)
@@ -47,16 +48,16 @@ export default async function UserOrdersPage() {
             </p>
             <div className="flex gap-4">
               <Button asChild>
-                <a href="/services">
+                <Link href="/services">
                   <Package className="h-4 w-4 mr-2" />
                   Xem dịch vụ
-                </a>
+                </Link>
               </Button>
               <Button asChild variant="outline">
-                <a href="/events">
+                <Link href="/events">
                   <Calendar className="h-4 w-4 mr-2" />
                   Xem sự kiện
-                </a>
+                </Link>
               </Button>
             </div>
           </CardContent>

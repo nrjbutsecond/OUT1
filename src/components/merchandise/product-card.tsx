@@ -27,9 +27,9 @@ export function ProductCard({ product }: { product: ProductWithOrg }) {
       // Get existing cart from localStorage
       const existingCart = localStorage.getItem("cart")
       const cartItems = existingCart ? JSON.parse(existingCart) : []
-      
+
       // Check if product already exists in cart
-      const existingItemIndex = cartItems.findIndex((item: any) => item.productId === product.id)
+      const existingItemIndex = cartItems.findIndex((item: { productId: string; quantity: number }) => item.productId === product.id)
       
       if (existingItemIndex >= 0) {
         // Update quantity if item exists

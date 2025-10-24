@@ -61,8 +61,8 @@ export default async function AdminOrdersPage() {
   }
 
   const totalRevenue = orders
-    .filter(o => o.status === "COMPLETED")
-    .reduce((sum, order) => sum + order.totalAmount, 0)
+    .filter((o: { status: string }) => o.status === "COMPLETED")
+    .reduce((sum: number, order: { totalAmount: number }) => sum + order.totalAmount, 0)
 
   return (
     <div className="space-y-6">
@@ -93,13 +93,13 @@ export default async function AdminOrdersPage() {
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-green-600">
-                {orders.filter(o => o.status === "COMPLETED").length}
+                {orders.filter((o: { status: string }) => o.status === "COMPLETED").length}
               </div>
               <div className="text-sm text-muted-foreground">Hoàn thành</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-yellow-600">
-                {orders.filter(o => o.status === "PENDING").length}
+                {orders.filter((o: { status: string }) => o.status === "PENDING").length}
               </div>
               <div className="text-sm text-muted-foreground">Chờ xử lý</div>
             </div>
@@ -170,13 +170,13 @@ export default async function AdminOrdersPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {orders.map((order) => (
+              {orders.map((order: typeof orders[number]) => (
                 <TableRow key={order.id}>
                   <TableCell className="font-medium">#{order.id.slice(-8)}</TableCell>
                   <TableCell>{order.user.name}</TableCell>
                   <TableCell>
                     <div className="flex flex-col gap-1">
-                      {order.items.map((item, index) => (
+                      {order.items.map((_item: unknown, index: number) => (
                         <Badge key={index} variant={getTypeBadgeVariant(order.type)}>
                           {order.type === "MERCHANDISE" && <Package className="w-3 h-3 mr-1" />}
                           {order.type === "TICKET" && <Ticket className="w-3 h-3 mr-1" />}
