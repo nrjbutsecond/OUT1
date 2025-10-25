@@ -3,6 +3,19 @@ import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
+// Type aliases for Prisma enums
+type CurrentRole = 'STUDENT' | 'UNIVERSITY_STUDENT' | 'TEACHER' | 'EMPLOYEE'
+type UserRole = 'USER' | 'PARTNER' | 'MENTOR' | 'ADMIN'
+type OrganizationType = 'VIP' | 'STANDARD' | 'SPONSOR'
+type EventType = 'TEDX' | 'WORKSHOP'
+type OrderStatus = 'PENDING' | 'PROCESSING' | 'SHIPPED' | 'DELIVERED' | 'CANCELLED'
+type OrderType = 'TICKET' | 'MERCHANDISE'
+type WorkspaceType = 'SERVICE' | 'ORGANIZATION'
+type TaskStatus = 'TODO' | 'IN_PROGRESS' | 'COMPLETED' | 'CANCELLED'
+type NotificationType = 'ORDER' | 'EVENT' | 'ORGANIZATION' | 'SYSTEM' | 'MENTOR'
+type CalendarEventType = 'EVENT' | 'DEADLINE' | 'SESSION' | 'MEETING' | 'REMINDER'
+type DiscountType = 'PERCENTAGE' | 'FIXED_AMOUNT'
+
 async function main() {
   console.log('🌱 Starting comprehensive seed...')
 
@@ -16,10 +29,10 @@ async function main() {
       password: adminPassword,
       name: 'TON Admin',
       phone: '0123456789',
-      currentRole: 'EMPLOYEE',
+      currentRole: 'EMPLOYEE' as CurrentRole,
       organization: 'TON Platform',
       roleAtOrg: 'Administrator',
-      role: 'ADMIN',
+      role: 'ADMIN' as UserRole,
       emailVerified: new Date(),
     },
   })
@@ -32,37 +45,37 @@ async function main() {
       email: 'user@ton-platform.vn',
       name: 'TON User',
       phone: '0987654321',
-      currentRole: 'UNIVERSITY_STUDENT',
+      currentRole: 'UNIVERSITY_STUDENT' as CurrentRole,
       organization: 'Hanoi University of Science and Technology',
       roleAtOrg: 'Event Organizer',
-      role: 'USER'
+      role: 'USER' as UserRole
     },
     {
       email: 'user@example.com',
       name: 'Test User',
       phone: '0987654321',
-      currentRole: 'UNIVERSITY_STUDENT',
+      currentRole: 'UNIVERSITY_STUDENT' as CurrentRole,
       organization: 'Hanoi University of Science and Technology',
       roleAtOrg: 'Event Organizer',
-      role: 'USER'
+      role: 'USER' as UserRole
     },
     {
       email: 'student@fpt.edu.vn',
       name: 'Nguyen Van A',
       phone: '0912345678',
-      currentRole: 'UNIVERSITY_STUDENT',
+      currentRole: 'UNIVERSITY_STUDENT' as CurrentRole,
       organization: 'FPT University',
       roleAtOrg: 'Club Member',
-      role: 'USER'
+      role: 'USER' as UserRole
     },
     {
       email: 'teacher@hust.edu.vn',
       name: 'Tran Thi B',
       phone: '0923456789',
-      currentRole: 'TEACHER',
+      currentRole: 'TEACHER' as CurrentRole,
       organization: 'Hanoi University of Science and Technology',
       roleAtOrg: 'Faculty Advisor',
-      role: 'USER'
+      role: 'USER' as UserRole
     }
   ]
 
@@ -88,37 +101,37 @@ async function main() {
       email: 'partner@ton-platform.vn',
       name: 'TON Partner',
       phone: '0934567890',
-      currentRole: 'EMPLOYEE',
+      currentRole: 'EMPLOYEE' as CurrentRole,
       organization: 'TON Platform',
       roleAtOrg: 'Partner',
-      role: 'PARTNER'
+      role: 'PARTNER' as UserRole
     },
     {
       email: 'partner@tedxhanoi.com',
       name: 'TEDxHanoi Organizer',
       phone: '0934567890',
-      currentRole: 'EMPLOYEE',
+      currentRole: 'EMPLOYEE' as CurrentRole,
       organization: 'TEDxHanoi',
       roleAtOrg: 'Lead Organizer',
-      role: 'PARTNER'
+      role: 'PARTNER' as UserRole
     },
     {
       email: 'partner@tedxhochiminh.com',
       name: 'TEDxHoChiMinhCity Organizer',
       phone: '0945678901',
-      currentRole: 'EMPLOYEE',
+      currentRole: 'EMPLOYEE' as CurrentRole,
       organization: 'TEDxHoChiMinhCity',
       roleAtOrg: 'Event Manager',
-      role: 'PARTNER'
+      role: 'PARTNER' as UserRole
     },
     {
       email: 'partner@tedxdanang.com',
       name: 'TEDxDaNang Organizer',
       phone: '0956789012',
-      currentRole: 'EMPLOYEE',
+      currentRole: 'EMPLOYEE' as CurrentRole,
       organization: 'TEDxDaNang',
       roleAtOrg: 'Community Manager',
-      role: 'PARTNER'
+      role: 'PARTNER' as UserRole
     }
   ]
 
@@ -144,28 +157,28 @@ async function main() {
       email: 'mentor@ton-platform.vn',
       name: 'TON Mentor',
       phone: '0967890123',
-      currentRole: 'TEACHER',
+      currentRole: 'TEACHER' as CurrentRole,
       organization: 'TON Platform',
       roleAtOrg: 'Senior Mentor',
-      role: 'MENTOR'
+      role: 'MENTOR' as UserRole
     },
     {
       email: 'mentor@example.com',
       name: 'Dr. John Smith',
       phone: '0967890123',
-      currentRole: 'TEACHER',
+      currentRole: 'TEACHER' as CurrentRole,
       organization: 'Harvard University',
       roleAtOrg: 'Professor',
-      role: 'MENTOR'
+      role: 'MENTOR' as UserRole
     },
     {
       email: 'mentor2@example.com',
       name: 'Sarah Johnson',
       phone: '0978901234',
-      currentRole: 'EMPLOYEE',
+      currentRole: 'EMPLOYEE' as CurrentRole,
       organization: 'Google',
       roleAtOrg: 'Senior Manager',
-      role: 'MENTOR'
+      role: 'MENTOR' as UserRole
     }
   ]
 
@@ -189,7 +202,7 @@ async function main() {
   const orgData = [
     {
       name: 'TON Platform',
-      type: 'VIP',
+      type: 'VIP' as OrganizationType,
       description: 'TEDx Organizer Network - Connecting and enhancing TEDx events',
       commission: 1,
       approved: true,
@@ -197,7 +210,7 @@ async function main() {
     },
     {
       name: 'TEDxHanoi',
-      type: 'VIP',
+      type: 'VIP' as OrganizationType,
       description: 'TEDxHanoi - Ideas worth spreading in Hanoi',
       commission: 1,
       approved: true,
@@ -205,7 +218,7 @@ async function main() {
     },
     {
       name: 'TEDxHoChiMinhCity',
-      type: 'VIP',
+      type: 'VIP' as OrganizationType,
       description: 'TEDxHoChiMinhCity - Connecting innovators in HCMC',
       commission: 1,
       approved: true,
@@ -213,7 +226,7 @@ async function main() {
     },
     {
       name: 'TEDxDaNang',
-      type: 'STANDARD',
+      type: 'STANDARD' as OrganizationType,
       description: 'TEDxDaNang - Ideas worth spreading in Da Nang',
       commission: 3,
       approved: true,
@@ -221,7 +234,7 @@ async function main() {
     },
     {
       name: 'TEDxCanTho',
-      type: 'STANDARD',
+      type: 'STANDARD' as OrganizationType,
       description: 'TEDxCanTho - TEDx community in Can Tho',
       commission: 3,
       approved: true,
@@ -331,7 +344,7 @@ async function main() {
       date: new Date('2024-06-15T09:00:00Z'),
       location: 'Hanoi Opera House, 1 Trang Tien, Hoan Kiem, Hanoi',
       ticketPrice: 500000,
-      type: 'TEDX',
+      type: 'TEDX' as EventType,
       approved: true,
       organizationId: organizations[1].id,
     },
@@ -341,7 +354,7 @@ async function main() {
       date: new Date('2024-07-20T14:00:00Z'),
       location: 'Saigon Convention Center, 799 Nguyen Van Linh, District 7, HCMC',
       ticketPrice: 600000,
-      type: 'TEDX',
+      type: 'TEDX' as EventType,
       approved: true,
       organizationId: organizations[2].id,
     },
@@ -351,7 +364,7 @@ async function main() {
       date: new Date('2024-08-10T10:00:00Z'),
       location: 'Da Nang University, 41 Le Duan, Hai Chau, Da Nang',
       ticketPrice: 300000,
-      type: 'TEDX',
+      type: 'TEDX' as EventType,
       approved: true,
       organizationId: organizations[3].id,
     },
@@ -361,7 +374,7 @@ async function main() {
       date: new Date('2024-05-25T09:00:00Z'),
       location: 'FPT University, Hoa Lac High-Tech Park, Hanoi',
       ticketPrice: 200000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -371,7 +384,7 @@ async function main() {
       date: new Date('2024-06-30T14:00:00Z'),
       location: 'HUST, 1 Dai Co Viet, Hai Ba Trung, Hanoi',
       ticketPrice: 400000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -381,7 +394,7 @@ async function main() {
       date: new Date('2025-03-15T14:00:00Z'),
       location: 'Can Tho University, Can Tho',
       ticketPrice: 200000,
-      type: 'TEDX',
+      type: 'TEDX' as EventType,
       approved: true,
       organizationId: organizations[4].id,
     },
@@ -391,7 +404,7 @@ async function main() {
       date: new Date('2025-02-28T10:00:00Z'),
       location: 'Hanoi Opera House, Hanoi',
       ticketPrice: 400000,
-      type: 'TEDX',
+      type: 'TEDX' as EventType,
       approved: true,
       organizationId: organizations[1].id,
     },
@@ -401,7 +414,7 @@ async function main() {
       date: new Date('2025-04-10T09:00:00Z'),
       location: 'Landmark 81, Ho Chi Minh City',
       ticketPrice: 500000,
-      type: 'TEDX',
+      type: 'TEDX' as EventType,
       approved: true,
       organizationId: organizations[2].id,
     },
@@ -411,7 +424,7 @@ async function main() {
       date: new Date('2025-05-20T15:00:00Z'),
       location: 'Da Nang Museum, Da Nang',
       ticketPrice: 300000,
-      type: 'TEDX',
+      type: 'TEDX' as EventType,
       approved: true,
       organizationId: organizations[3].id,
     },
@@ -421,7 +434,7 @@ async function main() {
       date: new Date('2025-01-15T09:00:00Z'),
       location: 'Online via Zoom',
       ticketPrice: 150000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -431,7 +444,7 @@ async function main() {
       date: new Date('2025-06-05T10:00:00Z'),
       location: 'Vietnam National University, Hanoi',
       ticketPrice: 250000,
-      type: 'TEDX',
+      type: 'TEDX' as EventType,
       approved: true,
       organizationId: organizations[1].id,
     },
@@ -441,7 +454,7 @@ async function main() {
       date: new Date('2025-07-12T14:00:00Z'),
       location: 'Saigon Innovation Hub, Ho Chi Minh City',
       ticketPrice: 400000,
-      type: 'TEDX',
+      type: 'TEDX' as EventType,
       approved: true,
       organizationId: organizations[2].id,
     },
@@ -452,7 +465,7 @@ async function main() {
       date: new Date('2025-08-15T09:00:00Z'),
       location: 'Hanoi University of Science and Technology',
       ticketPrice: 100000,
-      type: 'TEDX',
+      type: 'TEDX' as EventType,
       approved: true,
       organizationId: organizations[1].id,
     },
@@ -462,7 +475,7 @@ async function main() {
       date: new Date('2025-09-20T14:00:00Z'),
       location: 'Women\'s Museum, Ho Chi Minh City',
       ticketPrice: 200000,
-      type: 'TEDX',
+      type: 'TEDX' as EventType,
       approved: true,
       organizationId: organizations[2].id,
     },
@@ -472,7 +485,7 @@ async function main() {
       date: new Date('2025-10-25T10:00:00Z'),
       location: 'Da Nang Smart City Center',
       ticketPrice: 300000,
-      type: 'TEDX',
+      type: 'TEDX' as EventType,
       approved: true,
       organizationId: organizations[3].id,
     },
@@ -482,7 +495,7 @@ async function main() {
       date: new Date('2025-11-30T09:00:00Z'),
       location: 'Can Tho University of Technology',
       ticketPrice: 150000,
-      type: 'TEDX',
+      type: 'TEDX' as EventType,
       approved: true,
       organizationId: organizations[4].id,
     },
@@ -492,7 +505,7 @@ async function main() {
       date: new Date('2025-12-15T14:00:00Z'),
       location: 'Vietnam National University',
       ticketPrice: 250000,
-      type: 'TEDX',
+      type: 'TEDX' as EventType,
       approved: true,
       organizationId: organizations[1].id,
     },
@@ -503,7 +516,7 @@ async function main() {
       date: new Date('2025-01-20T09:00:00Z'),
       location: 'Online via Zoom',
       ticketPrice: 180000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -513,7 +526,7 @@ async function main() {
       date: new Date('2025-02-15T14:00:00Z'),
       location: 'FPT University, Hanoi',
       ticketPrice: 220000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -523,7 +536,7 @@ async function main() {
       date: new Date('2025-03-20T10:00:00Z'),
       location: 'Hanoi Photography Club',
       ticketPrice: 300000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -533,7 +546,7 @@ async function main() {
       date: new Date('2025-04-25T14:00:00Z'),
       location: 'Online via Zoom',
       ticketPrice: 200000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -543,7 +556,7 @@ async function main() {
       date: new Date('2025-05-30T09:00:00Z'),
       location: 'HUST, Hanoi',
       ticketPrice: 150000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -553,7 +566,7 @@ async function main() {
       date: new Date('2025-06-25T14:00:00Z'),
       location: 'Online via Zoom',
       ticketPrice: 250000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -563,7 +576,7 @@ async function main() {
       date: new Date('2025-07-30T10:00:00Z'),
       location: 'Business Incubator, Ho Chi Minh City',
       ticketPrice: 280000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -573,7 +586,7 @@ async function main() {
       date: new Date('2025-08-25T14:00:00Z'),
       location: 'Online via Zoom',
       ticketPrice: 200000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -583,7 +596,7 @@ async function main() {
       date: new Date('2025-09-30T09:00:00Z'),
       location: 'Hanoi Opera House',
       ticketPrice: 400000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -593,7 +606,7 @@ async function main() {
       date: new Date('2025-10-25T14:00:00Z'),
       location: 'FPT University, Ho Chi Minh City',
       ticketPrice: 320000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -603,7 +616,7 @@ async function main() {
       date: new Date('2025-11-20T10:00:00Z'),
       location: 'Online via Zoom',
       ticketPrice: 180000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -613,7 +626,7 @@ async function main() {
       date: new Date('2025-12-15T14:00:00Z'),
       location: 'Business Center, Da Nang',
       ticketPrice: 200000,
-      type: 'WORKSHOP',
+      type: 'WORKSHOP' as EventType,
       approved: true,
       organizationId: organizations[0].id,
     },
@@ -695,8 +708,8 @@ async function main() {
       data: {
         userId: users[Math.floor(Math.random() * users.length)].id,
         total: Math.floor(Math.random() * 1000000) + 100000,
-        status: ['PENDING', 'PROCESSING', 'SHIPPED', 'DELIVERED'][Math.floor(Math.random() * 4)],
-        type: ['TICKET', 'MERCHANDISE'][Math.floor(Math.random() * 2)],
+        status: (['PENDING', 'PROCESSING', 'SHIPPED', 'DELIVERED'][Math.floor(Math.random() * 4)] as OrderStatus),
+        type: (['TICKET', 'MERCHANDISE'][Math.floor(Math.random() * 2)] as OrderType),
         shippingAddress: `Address ${i + 1}, District ${i + 1}, Ho Chi Minh City`,
       },
     })
@@ -785,7 +798,7 @@ async function main() {
     const workspace = await prisma.workspace.create({
       data: {
         name: `Workspace ${i + 1}`,
-        type: ['SERVICE', 'ORGANIZATION'][Math.floor(Math.random() * 2)],
+        type: (['SERVICE', 'ORGANIZATION'][Math.floor(Math.random() * 2)] as WorkspaceType),
         ownerId: users[Math.floor(Math.random() * users.length)].id,
         organizationId: i % 3 === 0 ? organizations[Math.floor(Math.random() * organizations.length)].id : null, // Some have organization
       },
@@ -893,7 +906,7 @@ async function main() {
         workspaceId: workspaces[Math.floor(Math.random() * workspaces.length)].id,
         title: `Task ${i + 1}`,
         description: `Description for task ${i + 1}`,
-        status: ['TODO', 'IN_PROGRESS', 'COMPLETED'][Math.floor(Math.random() * 3)],
+        status: (['TODO', 'IN_PROGRESS', 'COMPLETED'][Math.floor(Math.random() * 3)] as TaskStatus),
         assigneeId: users[Math.floor(Math.random() * users.length)].id,
         dueDate: new Date(Date.now() + Math.random() * 30 * 24 * 60 * 60 * 1000), // Random date in next 30 days
       },
@@ -1002,7 +1015,7 @@ async function main() {
         userId: users[Math.floor(Math.random() * users.length)].id,
         title: `Notification ${i + 1}`,
         content: `This is notification content ${i + 1}. Important information for the user.`,
-        type: ['ORDER', 'EVENT', 'ORGANIZATION', 'SYSTEM', 'MENTOR'][Math.floor(Math.random() * 5)],
+        type: (['ORDER', 'EVENT', 'ORGANIZATION', 'SYSTEM', 'MENTOR'][Math.floor(Math.random() * 5)] as NotificationType),
         read: Math.random() > 0.3, // 70% read
         relatedId: Math.random() > 0.5 ? `related-${i + 1}` : null,
         createdAt: new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000), // Random date in past week
@@ -1022,7 +1035,7 @@ async function main() {
         title: `Calendar Event ${i + 1}`,
         date: startDate,
         endDate: Math.random() > 0.5 ? new Date(startDate.getTime() + 2 * 60 * 60 * 1000) : null, // 2 hours later
-        type: ['EVENT', 'DEADLINE', 'SESSION', 'MEETING', 'REMINDER'][Math.floor(Math.random() * 5)],
+        type: (['EVENT', 'DEADLINE', 'SESSION', 'MEETING', 'REMINDER'][Math.floor(Math.random() * 5)] as CalendarEventType),
         relatedId: Math.random() > 0.5 ? `related-${i + 1}` : null,
         notes: i % 3 === 0 ? `Notes for calendar event ${i + 1}` : null,
       },
@@ -1037,7 +1050,7 @@ async function main() {
     {
       code: 'WELCOME10',
       description: 'Welcome discount for new users',
-      type: 'PERCENTAGE',
+      type: 'PERCENTAGE' as DiscountType,
       value: 10,
       minAmount: 100000,
       maxUses: 100,
@@ -1046,7 +1059,7 @@ async function main() {
     {
       code: 'TEDX20',
       description: 'Special discount for TEDx events',
-      type: 'PERCENTAGE',
+      type: 'PERCENTAGE' as DiscountType,
       value: 20,
       minAmount: 200000,
       maxUses: 50,
@@ -1055,7 +1068,7 @@ async function main() {
     {
       code: 'STUDENT50',
       description: 'Student discount',
-      type: 'PERCENTAGE',
+      type: 'PERCENTAGE' as DiscountType,
       value: 50,
       minAmount: 50000,
       maxUses: 200,
@@ -1073,7 +1086,7 @@ async function main() {
     {
       code: 'EARLYBIRD',
       description: 'Early bird discount',
-      type: 'PERCENTAGE',
+      type: 'PERCENTAGE' as DiscountType,
       value: 15,
       minAmount: 150000,
       maxUses: 75,

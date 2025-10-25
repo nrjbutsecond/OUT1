@@ -58,7 +58,7 @@ export default async function MentorDashboard() {
     take: 3
   })
 
-  const totalStudents = new Set(mentorSessions.map(session => session.studentId)).size
+  const totalStudents = new Set(mentorSessions.map((session: { studentId: string }) => session.studentId)).size
 
   return (
     <div className="space-y-8">
